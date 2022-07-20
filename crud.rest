@@ -1,18 +1,47 @@
-### Get goals
-GET http://localhost:5000/api/goals
 
-### Set goals
+### CRUD: Get goals
+GET http://localhost:5000/api/goals
+Authorization: Bearer {{$dotenv TEST_BEARER_TOKEN}}
+
+### CRUD: Set goals
 POST http://localhost:5000/api/goals
 
-### Set goals with data
+### CRUD: Set goals with data
 
 curl -d "text=goal" -X POST http://localhost:5000/api/goals
 
-### Update goals
+### CRUD: Set goals with data and user
+curl -d "text=goal2" -X POST http://localhost:5000/api/goals
+    -H "Authorization: Bearer {{$dotenv TEST_BEARER_TOKEN}}"
+
+### CRUD: Update goals
 PUT http://localhost:5000/api/goals/1
 
-### Update goal with Id
+### CRUD: Update goal with Id
 curl -d "text=updated goal2" -X PUT http://localhost:5000/api/goals/62d7d11026c9e15e04afa61f
 
-### Delete goals
-DELETE http://localhost:5000/api/goals/62d7defe2dca4fcaa51fa684
+### CRUD: Delete goals
+DELETE http://localhost:5000/api/goals/62d876afa4dc3f00aacbdb8d
+Authorization: Bearer {{$dotenv TEST_BEARER_TOKEN}}
+
+### USER: 
+POST http://localhost:5000/api/users
+
+### USER with required fields
+curl -d "name=neme&email=email@email.com&password=1234" http://localhost:5000/api/users
+
+### USER create a user
+curl -d "name=neme4&email=email@email4.com&password=1234" -X POST http://localhost:5000/api/users
+
+### USER: Login
+POST http://localhost:5000/api/users/login
+
+### USER: test login
+curl -d "email=email@email.com&password=1234" -X POST http://localhost:5000/api/users/login
+
+### USER: User display data
+GET http://localhost:5000/api/users/me
+
+### USER: Test protected route
+GET http://localhost:5000/api/users/me
+Authorization: Bearer {{$dotenv TEST_BEARER_TOKEN}}
