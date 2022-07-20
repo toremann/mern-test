@@ -4,8 +4,15 @@ GET http://localhost:5000/api/goals
 ### Set goals
 POST http://localhost:5000/api/goals
 
+### Set goals with data
+
+curl -d "text=goal" -X POST http://localhost:5000/api/goals
+
 ### Update goals
 PUT http://localhost:5000/api/goals/1
 
+### Update goal with Id
+curl -d "text=updated goal2" -X PUT http://localhost:5000/api/goals/62d7d11026c9e15e04afa61f
+
 ### Delete goals
-DELETE http://localhost:5000/api/goals/1
+DELETE http://localhost:5000/api/goals/62d7defe2dca4fcaa51fa684
