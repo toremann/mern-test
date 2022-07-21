@@ -40,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
         });
+        console.log(`NEW user: ${name} ${email}`.rainbow);
     } else {
         res.status(400);
         throw new Error('Invalid user data');
@@ -62,8 +63,10 @@ const loginUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
         });
+        console.log(`SUCCESSS login: ${user.name} ${email}`.green);
     } else {
         res.status(400);
+        console.log(`FAILED login: ${user.name} ${email}`.red);
         throw new Error('Invalid credentials');
     }
 });
