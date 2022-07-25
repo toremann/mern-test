@@ -44,7 +44,7 @@ function Register() {
         e.preventDefault();
 
         if (password !== password2) {
-            toast.error('Password do not match');
+            toast.error('Passwords do not match');
         } else {
             const userData = {
                 name,
@@ -83,7 +83,7 @@ function Register() {
                     <div className="form-group">
                         <input type="password" className="form-control" id="password2" name="password2" value={password2} placeholder="Confirm password" onChange={onChange} />
                     </div>
-                    <div className="form-grooup">
+                    <div className="form-group">
                         <button type="submit" className="btn btn-block">
                             Submit
                         </button>

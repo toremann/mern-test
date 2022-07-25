@@ -3,15 +3,15 @@ const bcrypt = require('bcryptjs');
 const asyncHandler = require('express-async-handler');
 const User = require('../models/userModel');
 
-// @desc Register new user
-// @route POST /api/users
-// @access Public
+// @desc    Register new user
+// @route   POST /api/users
+// @access  Public
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body;
 
     if (!name || !email || !password) {
         res.status(400);
-        throw new Error('Please fill all fields');
+        throw new Error('Please add all fields');
     }
 
     // Check if user exists
@@ -40,20 +40,19 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
         });
-        console.log(`NEW user: ${name} ${email}`.rainbow);
     } else {
         res.status(400);
         throw new Error('Invalid user data');
     }
 });
 
-// @desc Authenticate a user
-// @route POST /api/users/login
-// @access Public
+// @desc    Authenticate a user
+// @route   POST /api/users/login
+// @access  Public
 const loginUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
 
-    //Check for user email
+    // Check for user email
     const user = await User.findOne({ email });
 
     if (user && (await bcrypt.compare(password, user.password))) {
@@ -63,10 +62,8 @@ const loginUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
         });
-        console.log(`SUCCESSS login: ${user.name} ${email}`.green);
     } else {
         res.status(400);
-        console.log(`FAILED login: ${user.name} ${email}`.red);
         throw new Error('Invalid credentials');
     }
 });
