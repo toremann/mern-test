@@ -40,6 +40,7 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             token: generateToken(user._id),
         });
+        console.log(`NEW user: ${name} ${email}`.rainbow);
     } else {
         res.status(400);
         throw new Error('Invalid user data');
